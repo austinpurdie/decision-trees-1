@@ -54,7 +54,7 @@ def get_unique_values(data):
         unique_values_dict[x] = values
     return unique_values_dict
 
-def select_attribute(data, target, method):
+def select_attribute(data, target):
     base_entropy = entropy(list(data[target]))
     information_gain_dict = {}
     total_records = data.shape[0]
@@ -93,7 +93,7 @@ def most_common(list):
     return max(value_counts, key = value_counts.get)
 
 def build_tree(tree, data, target, parent):
-    next_branch_attribute = select_attribute(data, target, method)
+    next_branch_attribute = select_attribute(data, target)
     for i in next_branch_attribute[1]:
         new_node = tree.add_branch(parent, next_branch_attribute[0], i)
         filter_attribute = str(new_node.attribute)
